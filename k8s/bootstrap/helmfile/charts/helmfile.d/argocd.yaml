@@ -1,0 +1,20 @@
+
+helmDefaults:
+  wait: true
+  timeout: 1800
+  atomic: true
+  cleanupOnFail: true
+  skipDeps: false
+
+repositories:
+  - name: argo
+    url: https://argoproj.github.io/argo-helm
+
+releases:
+  - name: argocd
+    namespace: argocd
+    chart: argo/argo-cd
+    version: "5.5.12"
+    values:
+      - ../values/argocd.yaml
+    disableValidation: true
