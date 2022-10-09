@@ -6,5 +6,5 @@ locals {
 
 resource "azurerm_resource_group" "aks" {
   name     = "rg-aks-${local.location}"
-  location = local.location
+  location = var.location
 }
