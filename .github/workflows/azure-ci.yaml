@@ -5,7 +5,7 @@ on:
     branches:
       - main
 env:
-  TF_WORKING_DIR: ./infrastructure/azure/terraform
+  TF_WORKING_DIR: ../../infrastructure/azure/terraform
 
 jobs:
   terraform:
