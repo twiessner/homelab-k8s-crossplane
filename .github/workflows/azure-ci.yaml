@@ -48,6 +48,6 @@ jobs:
         working-directory: ${{ env.TF_WORKING_DIR }}
 
       - name: terraform apply
-        run: terraform apply -input=false
+        run: terraform apply -input=false -auto-approve
         if: github.ref == 'refs/heads/main'
         working-directory: ${{ env.TF_WORKING_DIR }}
