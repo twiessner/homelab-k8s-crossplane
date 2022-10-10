@@ -1,8 +1,16 @@
 
 variable "location" {
-  type        = string
+  type        = map(string)
   description = "Specifies the Resource Group where the Managed Kubernetes Cluster should exist."
-  default     = "West Europe"
+  default = {
+    name  = "West Europe"
+    short = "westeu"
+    mini  = "weu"
+  }
+}
+
+variable "scope" {
+  type = string
 }
 
 variable "instance" {
