@@ -80,8 +80,14 @@ jobs:
 
       - name: Helmfile validate
         run: |
+          # Helmfile
           helmfile --version
+          
+          # Helm
           helm version
+          helm plugin list
+          
+          # Kubectl
           kubectl version --client
 
       - name : Helmfile apply
