@@ -57,7 +57,7 @@ jobs:
   helmfile:
     name: 'Helmfile'
     env:
-      KUBECONFIG_FILE: ${{ secrets.AKS_KUBE_CONFIG }}
+      KUBECONFIG: ${{ secrets.AKS_KUBE_CONFIG }}
     runs-on: ubuntu-latest
     environment: production
 
