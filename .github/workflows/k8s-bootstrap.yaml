@@ -32,3 +32,4 @@ jobs:
           install-helm-plugins: true
         run: |
           helmfile apply
+        working-directory: ${{ env.HELMFILE_WORKING_DIR }}
