@@ -38,11 +38,11 @@ jobs:
           terraform_wrapper: false
 
       - name: terraform init
-        run: terraform init
+        run: terraform init --upgrade
         working-directory: ${{ env.TF_WORKING_DIR }}
 
       - name: terraform validate
-        run: terraform init
+        run: terraform validate
         working-directory: ${{ env.TF_WORKING_DIR }}
 
       - name: terraform plan
