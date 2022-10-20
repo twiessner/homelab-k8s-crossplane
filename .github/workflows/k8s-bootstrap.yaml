@@ -31,6 +31,10 @@ jobs:
           install-helm: no
           install-kubectl: no
           install-helm-plugins: true
+        run: |
+          helmfile --version
+          helm version
+          kubectl version --client
 
       - name : Helmfile apply
         run: |
