@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+
 env:
   HELMFILE_WORKING_DIR: ./k8s/bootstrap/helmfile/charts
 
@@ -24,12 +25,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Helmfile
+      - name: Helmfile setup
         uses: mamezou-tech/setup-helmfile@v1.0.0
         with:
           install-helm: no
           install-kubectl: no
           install-helm-plugins: true
+
+      - name : Helmfile apply
         run: |
           helmfile apply
         working-directory: ${{ env.HELMFILE_WORKING_DIR }}
