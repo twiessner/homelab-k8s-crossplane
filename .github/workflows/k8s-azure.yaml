@@ -11,7 +11,7 @@ env:
 
 jobs:
   terraform:
-    name: 'Terraform'
+    name: Terraform
     env:
       ARM_USE_MSI: true
       ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
@@ -55,11 +55,10 @@ jobs:
         working-directory: ${{ env.TF_WORKING_DIR }}
 
   helmfile:
-    name: 'Helmfile'
-    env:
-      KUBECONFIG: ${{ secrets.AKS_KUBE_CONFIG }}
+    name: Helmfile
     runs-on: ubuntu-latest
     environment: production
+    needs: terraform
 
     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
     defaults:
@@ -78,17 +77,11 @@ jobs:
           install-helm-plugins: no
           additional-helm-plugins: https://github.com/databus23/helm-diff
 
-      - name: Helmfile validate
-        run: |
-          # Helmfile
-          helmfile --version
-          
-          # Helm
-          helm version
-          helm plugin list
-          
-          # Kubectl
-          kubectl version --client
+      - name: Setup Kubernetes
+        uses: azure/k8s-set-context@v1
+        with:
+          method: kubeconfig
+          kubeconfig: ${{ secrets.AKS_KUBE_CONFIG }}
 
       - name : Helmfile apply
         run: |
