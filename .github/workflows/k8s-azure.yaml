@@ -75,7 +75,10 @@ jobs:
         with:
           install-helm: no
           install-kubectl: no
-          install-helm-plugins: true
+          install-helm-plugins: no
+          additional-helm-plugins: https://github.com/databus23/helm-diff
+
+      - name: Helmfile validate
         run: |
           helmfile --version
           helm version
