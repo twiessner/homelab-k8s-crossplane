@@ -37,6 +37,18 @@ jobs:
           terraform_version: 1.3.1
           terraform_wrapper: false
 
+      - name: Setup tflint
+        uses: terraform-linters/setup-tflint@v2
+
+      - name: tflint
+        run: tflint -f compact
+
+      - name: tfsec
+        uses: aquasecurity/tfsec-action@v1.0.0
+        working-directory: ${{ env.TF_WORKING_DIR }}
+        with:
+          soft_fail: true
+
       - name: terraform init
         run: terraform init --upgrade
         working-directory: ${{ env.TF_WORKING_DIR }}
