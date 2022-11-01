@@ -1,5 +1,5 @@
 
-data "azurerm_client_config" "current" {}
+data "azurerm_subscription" "current" {}
 
 locals {
   contact_emails = [
@@ -10,7 +10,7 @@ locals {
 
 resource "azurerm_consumption_budget_subscription" "default" {
   name            = join("-", ["consumption", "default"])
-  subscription_id = data.azurerm_client_config.current.subscription_id
+  subscription_id = data.azurerm_subscription.current.id
 
   amount     = 25
   time_grain = "Monthly"
