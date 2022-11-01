@@ -25,6 +25,7 @@ jobs:
     defaults:
       run:
         shell: bash
+        working-directory: ${{ env.TF_WORKING_DIR }}
 
     steps:
       # Checkout the repository to the GitHub Actions runner
@@ -45,26 +46,22 @@ jobs:
 
       - name: tfsec
         uses: aquasecurity/tfsec-action@v1.0.0
-        working-directory: ${{ env.TF_WORKING_DIR }}
+
         with:
           soft_fail: true
 
       - name: terraform init
         run: terraform init --upgrade
-        working-directory: ${{ env.TF_WORKING_DIR }}
 
       - name: terraform validate
         run: terraform validate
-        working-directory: ${{ env.TF_WORKING_DIR }}
 
       - name: terraform plan
         run: terraform plan -input=false
-        working-directory: ${{ env.TF_WORKING_DIR }}
 
       - name: terraform apply
         run: terraform apply -input=false -auto-approve
         if: github.ref == 'refs/heads/main'
-        working-directory: ${{ env.TF_WORKING_DIR }}
 
   helmfile:
     name: Helmfile
