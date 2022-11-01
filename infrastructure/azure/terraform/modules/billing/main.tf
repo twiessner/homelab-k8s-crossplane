@@ -8,9 +8,9 @@ locals {
   ]
 }
 
-resource "azurerm_consumption_budget_resource_group" "default" {
-  name              = join("-", ["consumption", "default"])
-  resource_group_id = join("/", ["/subscriptions", data.azurerm_client_config.current.subscription_id])
+resource "azurerm_consumption_budget_subscription" "default" {
+  name            = join("-", ["consumption", "default"])
+  subscription_id = data.azurerm_client_config.current.subscription_id
 
   amount     = 25
   time_grain = "Monthly"
