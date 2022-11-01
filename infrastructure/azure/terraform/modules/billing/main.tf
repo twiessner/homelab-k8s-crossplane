@@ -1,4 +1,6 @@
 
+data "azurerm_client_config" "current" {}
+
 locals {
   contact_emails = [
     "phil@containeirze.de",
@@ -8,7 +10,7 @@ locals {
 
 resource "azurerm_consumption_budget_resource_group" "default" {
   name              = join("-", ["consumption", "default"])
-  resource_group_id = azurerm_resource_group.billing.id
+  resource_group_id = join("/", ["/subscriptions", data.azurerm_client_config.current.subscription_id])
 
   amount     = 25
   time_grain = "Monthly"
