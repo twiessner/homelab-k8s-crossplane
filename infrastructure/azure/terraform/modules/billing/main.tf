@@ -14,7 +14,7 @@ resource "azurerm_consumption_budget_resource_group" "default" {
   time_grain = "Monthly"
 
   time_period {
-    start_date = "2022-10-01T00:00:00Z"
+    start_date = "2022-11-01T00:00:00Z"
   }
 
   notification {
