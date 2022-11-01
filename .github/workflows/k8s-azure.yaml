@@ -42,7 +42,9 @@ jobs:
         uses: terraform-linters/setup-tflint@v2
 
       - name: tflint
-        run: tflint -f compact
+        run: |
+          tflint --init
+          tflint -f compact
 
       - name: tfsec
         uses: aquasecurity/tfsec-action@v1.0.0
