@@ -45,7 +45,7 @@ az storage account create -n sthomelabtfbackend001 \
 az storage container create -n tfstate --account-name sthomelabtfbackend001
 
 # execute terraform
-cd infrastrcture/azure/terraform
+cd infrastructure/azure/terraform
 
 terraform init -upgrade
 terraform apply
