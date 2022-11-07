@@ -55,8 +55,17 @@ terraform apply
 The second part of the Homelab is the [Git repository](https://github.com/twiessner/homelab-k8s-crossplane-argocd), which contains the actual 
 ArgoCD applications that implement the logic for the rest of the process.
 
-# What we have learned
+# Outcomes (what we have learned)
 
 - Setup of AKS is easy to implement
 - Installation of ArgoCD could also have been done directly via the [Terraform Helm provider](https://registry.terraform.io/providers/hashicorp/helm)
 - Helmfile is a nice tool
+- Bootstraping a Kubernetes cluster using ArgoCD is a great decoupled way to separate infrastructure from application layer
+- Crossplane for Azure was disappointing
+  - Installation via ArgoCD is easy to implement
+  - Documentation is incomplete and requires frequent googling and code reverse engineered 
+  - The functional scope is very small (approx. 20 Azure resources)
+
+> The hope for a productive use and possibly a replacement of Terraform has not been fulfilled. 
+> Nevertheless, it was a great and instructive time. Perhaps the PoC can be reactivated once again after a rest period.
+
